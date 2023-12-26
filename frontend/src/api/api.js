@@ -4,7 +4,7 @@ export const getAllTasks = async () => {
   try {
     const response = await fetch(endpoints.getAllTasks);
     const data = await response.json();
-    return data;
+    return data.tasks;
   } catch (error) {
     console.log(error);
   }

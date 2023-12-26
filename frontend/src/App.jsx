@@ -1,27 +1,22 @@
-import { useState, useEffect } from "react";
-import { getAllTasks } from "./api/api";
+import { Route, Routes } from "react-router";
 
-import Loading from "./components/Loading/Loading";
-import TaskList from "./components/TaskList/TaskList";
+import AddTaskPage from "./pages/AddTaskPage/AddTaskPage";
+import HomePage from "./pages/HomePage/HomePage";
+import EditTaskPage from "./pages/EditTaskPage/EditTaskPage";
+import TasksPage from "./pages/TasksPage/TasksPage";
+
+import Layout from "./layout/layout";
 
 const App = () => {
-  const [tasks, setTasks] = useState({});
-  const [loading, setLoading] = useState(true);
-
-  const loadTasks = async () => {
-    const tasksData = await getAllTasks();
-    if (tasksData) {
-      setLoading(false);
-    }
-    setTasks(tasksData);
-  };
-
-  useEffect(() => {
-    loadTasks();
-  }, []);
-
   return (
-    <div>{loading ? <Loading /> : <TaskList tasklist={tasks.tasks} />}</div>
+    <Layout>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/tasks" element={<TasksPage />} />
+        <Route path="/new-task" element={<AddTaskPage />} />
+        <Route path="/edit-task" element={<EditTaskPage />} />
+      </Routes>
+    </Layout>
   );
 };
 
