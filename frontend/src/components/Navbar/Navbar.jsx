@@ -42,6 +42,8 @@ const Navbar = () => {
             Add Tasks
           </Link>
           <Link
+            as={RouterLink}
+            to={"/uncompleted"}
             fontSize={"1em"}
             _hover={{
               textStyle: "none",

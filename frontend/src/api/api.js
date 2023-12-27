@@ -10,6 +10,24 @@ export const getAllTasks = async () => {
   }
 };
 
+export const toggleTask = async (taskID, currentStatus) => {
+  const endpointPatch = `${endpoints.updateTask}/${taskID}`;
+  fetch(endpointPatch, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      completed: !currentStatus,
+    }),
+  }).then((response) => {
+    if (!response.ok) {
+      console.log(response.status);
+    }
+    return response.json();
+  });
+};
+
 const createTask = () => {};
 
 const getSingleTask = () => {};

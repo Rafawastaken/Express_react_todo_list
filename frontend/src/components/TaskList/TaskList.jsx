@@ -1,8 +1,7 @@
 import { Table, Th, Thead, Tr, Tbody, Td, Button, Box } from "@chakra-ui/react";
+import { toggleTask } from "../../api/api";
 
 const TaskList = ({ tasks }) => {
-  console.log(tasks);
-
   return (
     <Box mx={"1em"}>
       <Table
@@ -31,7 +30,14 @@ const TaskList = ({ tasks }) => {
                 <Button>Edit</Button>
               </Td>
               <Td>
-                <Button>Finish</Button>
+                <Button
+                  onClick={() => {
+                    toggleTask(task._id, task.completed);
+                    window.location.reload();
+                  }}
+                >
+                  {task.completed ? "Finish" : "Undone"}
+                </Button>
               </Td>
               <Td>
                 <Button>Remove</Button>
