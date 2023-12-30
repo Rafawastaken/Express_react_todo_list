@@ -1,5 +1,16 @@
-import { Table, Th, Thead, Tr, Tbody, Td, Button, Box } from "@chakra-ui/react";
-import { toggleTask } from "../../api/api";
+import {
+  Table,
+  Th,
+  Thead,
+  Tr,
+  Tbody,
+  Td,
+  Button,
+  Box,
+  Link,
+} from "@chakra-ui/react";
+import { toggleTask, deleteTask } from "../../api/api";
+import { Link as RouterLink } from "react-router-dom";
 
 const TaskList = ({ tasks }) => {
   return (
@@ -25,22 +36,30 @@ const TaskList = ({ tasks }) => {
             <Tr key={task._id}>
               <Td>{index}</Td>
               <Td>{task.name}</Td>
-              <Td>{task.completed ? "Uncompleted" : "Completed"}</Td>
+              <Td>{!task.completed ? "Uncompleted" : "Completed"}</Td>
               <Td>
-                <Button>Edit</Button>
+                <Link as={RouterLink} to={`/edit-task/${task._id}`}>
+                  Edit
+                </Link>
               </Td>
               <Td>
                 <Button
                   onClick={() => {
                     toggleTask(task._id, task.completed);
-                    window.location.reload();
                   }}
                 >
-                  {task.completed ? "Finish" : "Undone"}
+                  {console.log(task.completed)}
+                  {!task.completed ? "Finish" : "Undone"}
                 </Button>
               </Td>
               <Td>
-                <Button>Remove</Button>
+                <Button
+                  onClick={() => {
+                    deleteTask(task._id);
+                  }}
+                >
+                  Remove
+                </Button>
               </Td>
             </Tr>
           ))}

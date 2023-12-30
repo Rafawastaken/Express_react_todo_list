@@ -14,6 +14,8 @@ const Navbar = () => {
     >
       <Box>
         <Link
+          as={RouterLink}
+          to={"/"}
           fontSize={"2xl"}
           fontWeight={"medium"}
           _hover={{
@@ -32,6 +34,8 @@ const Navbar = () => {
           gap={"1em"}
         >
           <Link
+            as={RouterLink}
+            to={"/new-task"}
             fontSize={"1em"}
             _hover={{
               textStyle: "none",

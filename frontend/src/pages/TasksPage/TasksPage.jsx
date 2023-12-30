@@ -17,6 +17,9 @@ const TasksPage = () => {
   useEffect(() => {
     const loadData = async () => {
       try {
+        // Delay de um segundo por request
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+
         const taskData = await getAllTasks();
         setTasks(taskData);
         setLoading(false);
@@ -26,7 +29,7 @@ const TasksPage = () => {
     };
 
     loadData();
-  }, []);
+  });
 
   return (
     <>

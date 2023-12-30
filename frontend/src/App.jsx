@@ -12,10 +12,10 @@ const App = () => {
   return (
     <Layout>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<TasksPage />} />
         <Route path="/tasks" element={<TasksPage />} />
         <Route path="/new-task" element={<AddTaskPage />} />
-        <Route path="/edit-task" element={<EditTaskPage />} />
+        <Route path="/edit-task/:task_id" element={<EditTaskPage />} />
         <Route path="/uncompleted" element={<UncompletedPage />} />
       </Routes>
     </Layout>

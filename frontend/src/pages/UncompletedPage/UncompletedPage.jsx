@@ -18,7 +18,7 @@ const UncompletedPage = () => {
     const loadData = async () => {
       try {
         const taskData = await getAllTasks();
-        const incompleteData = taskData.filter((task) => task.completed);
+        const incompleteData = taskData.filter((task) => !task.completed);
         setTasks(incompleteData);
         setLoading(false);
       } catch (error) {
@@ -27,7 +27,7 @@ const UncompletedPage = () => {
     };
 
     loadData();
-  }, []);
+  });
 
   return (
     <>
